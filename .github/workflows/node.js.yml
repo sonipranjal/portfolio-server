@@ -5,23 +5,23 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Deploy Node.js app
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.SSH_HOST }}
-        key: ${{ secrets.SSH_KEY }}
-        username: ${{ secrets.SSH_USERNAME }}
-        
-        script: | 
-          cd portfolio-server
-          git pull
-          npm install
-          pm2 restart src/server.js
+      - name: Deploy Node.js app
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          username: ${{ secrets.SSH_USERNAME }}
+
+          script: |
+            cd portfolio-server
+            git pull
+            npm install
+            pm2 restart src/server.js

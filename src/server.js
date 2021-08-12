@@ -28,7 +28,7 @@ app.use('/api', subscribeRoute);
 app.use('/api', contactRoute);
 
 app.get('/', (_, res) => {
-  res.send('Hello Pranjal!');
+  res.send("Hello from pranjal's api server!");
 });
 
 const port = process.env.PORT || 5000;
